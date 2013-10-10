@@ -5,6 +5,7 @@ define('ROOT', dirname(__FILE__) . DS);
 define('CACHE', ROOT . 'tmp' . DS);
 
 require './lib_proxy.php';
+$tag = '44haitaoad1-20';
 
 /**
  * 缓存静态资源(css/js/img)
@@ -109,7 +110,9 @@ function mkdirs($strPath = '', $mode = 777) {
 }
 
 function amazon_r($hit){
-	$jump_url = preg_replace('/(tag=[a-z0-9_\-]+)/', 'tag=sbearsblog0d-20', $hit[1]);
+
+    global $tag;
+	$jump_url = preg_replace('/(tag=[a-z0-9_\-]+)/', 'tag='.$tag, $hit[1]);
 	return 'href="'.$jump_url.'"';
 }
 ?>

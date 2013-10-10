@@ -34,7 +34,7 @@ if (stripos($path, '/redirect/') !== false) {
 	else if (stripos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST']) !== false) {
 		//本站点击流量修改amazon tag标签
 		getCacheStatic($uri);
-		$jump_url = preg_replace('/(\tag=[a-z0-9_\-]+)/', 'tag=sbearsblog0d-20', $proxy->redirect_url);
+		$jump_url = preg_replace('/(\tag=[a-z0-9_\-]+)/', 'tag='.$tag, $proxy->redirect_url);
 		header('location:' . $jump_url);
 		die();
 	}
@@ -74,7 +74,7 @@ else {
 		$page = preg_replace('/<script[^<]+?google-analytics.com(.+?)script>/', '', $page);
 		$page = preg_replace('/<script[^<]+?pagead2.googlesyndication.com(.+?)script>/', '', $page);
 		$page .= '<style>.ht-news-rolling,.ht-side-bar-sns,.ht-side-bar-code,.ht-buy-list{display:none}</style>';
-		$page .= '<script>$(".ht-suggest-follow").html("<a href=\"http://www.amazon.com/?_encoding=UTF8&camp=1789&creative=9325&linkCode=ur2&tag=sbearsblog0d-20\" target=\"_blank\"><img src=/amazon.jpg /></a>")</script>';
+		$page .= '<script>$(".ht-suggest-follow").html("<a href=\"http://www.amazon.com/?_encoding=UTF8&camp=1789&creative=9325&linkCode=ur2&tag='.$tag.'\" target=\"_blank\"><img src=/amazon.jpg /></a>")</script>';
 		header('Content-Length: ' . strlen($page)); //修正页面大小
 	}
 
