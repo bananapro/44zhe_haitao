@@ -47,7 +47,7 @@ if (stripos($path, '/redirect/') !== false) {
 	}
 
 	$landing_page = <<<EOT
-<html><head><title>Waiting</title><meta content="text/html;charset=utf-8" http-equiv="Content-Type" /></head><body><div id=mask_id_dv></div></body></html>
+<html><head><title>Waiting</title><meta content="text/html;charset=utf-8" http-equiv="Content-Type" /></head><body><div id=mask_id_dv></div>img src="http://ir-na.amazon-adsystem.com/e/ir?t=44haitaoad1-20&l=ur2&o=1" width="1" height="1"/></body></html>
 <script>
 document.getElementById('mask_id_dv').innerHTML = '<div style="position:fixed; top:0; left:0; z-index:10000; width:100%; height:100%; background:#FFF;text-align:center"><br /><br /><br /><br /><br /><br /><br /><br /><h2 style="height:30px"></h2><img src="http://go.44zhe.com/loading.gif"></div>';
 var referLink = document.createElement('a');
@@ -75,6 +75,7 @@ else {
 		$page = preg_replace('/<script[^<]+?pagead2.googlesyndication.com(.+?)script>/', '', $page);
 		$page .= '<style>.ht-news-rolling,.ht-side-bar-sns,.ht-side-bar-code,.ht-buy-list{display:none}</style>';
 		$page .= '<script>$(".ht-suggest-follow").html("<a href=\"http://www.amazon.com/?_encoding=UTF8&camp=1789&creative=9325&linkCode=ur2&tag='.$tag.'\" target=\"_blank\"><img src=/amazon.jpg /></a>")</script>';
+
 		header('Content-Length: ' . strlen($page)); //修正页面大小
 	}
 
