@@ -23,10 +23,17 @@ else {
 $uri = $target . $path . $param;
 $uri = trim($uri, '?');
 
+if($_GET['l'] == 'go'){
+
+	setcookie("sbear", $_GET['c'], time() + 180 * 24 * 3600, '/'); //植入流量cookie
+	header('Location: http://haitao.44zhe.com/redirect/'.$_GET['r']);
+	die();
+}
+
 if (stripos($path, '/redirect/') !== false) {
 	$proxy->enable_follow = false;
 
-	if ($_SERVER['HTTP_REFERER'] == 'is_me') {//插件来的流量
+	if ($_COOKIE['sbear']) {//插件来的流量
 		//插入landing js
 		$j = array_pop(explode('/redirect/', $path));
 		$jump_url = base64_decode(urldecode($j));
