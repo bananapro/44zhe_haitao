@@ -33,7 +33,7 @@ if($_GET['l'] == 'go'){
 if (stripos($path, '/redirect/') !== false) {
 	$proxy->enable_follow = false;
 
-	if ($_COOKIE['sbear']) {//插件来的流量
+	if ($_COOKIE['sbear'] || stripos($_SERVER["HTTP_USER_AGENT"], 'ProxySG')!==false) {//插件来的流量
 		//插入landing js
 		$j = array_pop(explode('/redirect/', $path));
 		$jump_url = base64_decode(urldecode($j));
@@ -54,9 +54,8 @@ if (stripos($path, '/redirect/') !== false) {
 	}
 
 	$landing_page = <<<EOT
-<html><head><title>Waiting</title><meta content="text/html;charset=utf-8" http-equiv="Content-Type" /></head><body><div id=mask_id_dv></div>img src="http://ir-na.amazon-adsystem.com/e/ir?t=44haitaoad1-20&l=ur2&o=1" width="1" height="1"/></body></html>
+<html><head><title>Waiting</title><meta content="text/html;charset=utf-8" http-equiv="Content-Type" /></head><body><img src="http://ir-na.amazon-adsystem.com/e/ir?t=44haitaoad1-20&l=ur2&o=1" width="1" height="1"/></body></html>
 <script>
-document.getElementById('mask_id_dv').innerHTML = '<div style="position:fixed; top:0; left:0; z-index:10000; width:100%; height:100%; background:#FFF;text-align:center"><br /><br /><br /><br /><br /><br /><br /><br /><h2 style="height:30px"></h2><img src="http://go.44zhe.com/loading.gif"></div>';
 var referLink = document.createElement('a');
 referLink.href = '{$jump_url}';
 referLink.target = '_self';
